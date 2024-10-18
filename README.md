@@ -20,4 +20,11 @@
 - Supports multiple routes, including U-turn and square-shaped patterns.
 - Automatic obstacle avoidance, working around obstacles, and automatic return to the charging station.
 
-![Detail Description](https://github.com/lguitech/open_micro_mower_ros/blob/main/mower.png)
+![Detail Description](https://github.com/lguitech/open_micro_mower_rover/blob/main/mower.png)
+
+## The components of the entire system are as follows:
+
+[OPEN_MICRO_MOWER_ROS](https://github.com/lguitech/open_micro_mower_ros)  
+[OPEN_MICRO_MOWER_Android](https://github.com/lguitech/open_micro_mower_android)  
+[OPEN_MICRO_MOWER_BASE](https://github.com/lguitech/open_micro_mower_base)  
+[OPEN_MICRO_MOWER_ROVER](https://github.com/lguitech/open_micro_mower_rover)  
