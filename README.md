@@ -19,3 +19,5 @@
 - Supports multiple working areas, with the ability to connect them through channels.
 - Supports multiple routes, including U-turn and square-shaped patterns.
 - Automatic obstacle avoidance, working around obstacles, and automatic return to the charging station.
+
+![Detail Description](https://github.com/lguitech/open_micro_mower_ros/blob/main/mower.png)
