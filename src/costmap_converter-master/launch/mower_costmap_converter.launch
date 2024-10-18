@@ -1,0 +1,18 @@
+<launch>
+    <arg name="output"                      default="screen"/> 
+    <arg name="required"                    default="true"/>
+    <arg name="respawn"                     default="false"/>
+
+  	<!--- Run optimization test node -->
+   	<node pkg="costmap_converter" type="mower_costmap_converter_node" name="mower_costmap_converter_node" 
+          output="$(arg output)" required="$(arg required)" respawn="$(arg respawn)">
+
+		<param name="mower_map_topic"              				value="/mower/map"/>  
+
+		<param name="mower_teb_static_obstacle_topic"     		value="/mower/teb_static_obstacle"/>  
+		<param name="mower_teb_static_obstacle_mark_topic"   	value="/mower/teb_static_obstacle_marker"/>  
+
+	</node>
+</launch>
+
+

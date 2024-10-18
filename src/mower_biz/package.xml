@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mower_biz</name>
+  <version>0.0.0</version>
+  <description>The mower_biz package</description>
+
+  <author email="lguitech@126.com">brookli</author>
+  <maintainer email="lguitech@126.com">brookli</maintainer>
+
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>mower_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>mower_comm</build_depend>
+  <build_depend>teb_local_planner</build_depend>
+  <build_depend>message_runtime</build_depend>
+  <build_depend>tf</build_depend>
+  
+
+  <build_export_depend>mower_comm</build_export_depend>
+  
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>roslaunch</exec_depend>
+  <exec_depend>message_generation</exec_depend>
+  <exec_depend>mower_msgs</exec_depend>
+  <exec_depend>mower_comm</exec_depend>
+  <exec_depend>teb_local_planner</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+</package>
+
+
+
+
+  
+
+  
+

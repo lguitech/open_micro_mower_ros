@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros/melodic/include",
+                "/usr/include/gazebo-9",
+                "${workspaceFolder}/devel/include",
+                "${workspaceFolder}/devel/include",
+                "${workspaceFolder}/src/mower_map/include",
+                "${workspaceFolder}/src/mower_comm/include",
+                "${workspaceFolder}/src/eigen-3.4.0",
+                "${workspaceFolder}/src/slic3r_coverage_planner/Slic3r/xs/src/libslic3r",
+                "${workspaceFolder}/src/slic3r_coverage_planner/Slic3r/xs/src",
+                "/usr/include/suitesparse",
+                "/usr/include/pcl-1.8"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

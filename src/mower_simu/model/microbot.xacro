@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="microbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find mower_simu)/model/base.xacro" />
+    <xacro:include filename="$(find mower_simu)/model/gps.xacro" /> 
+    <xacro:include filename="$(find mower_simu)/model/imu.xacro" /> 
+    <xacro:include filename="$(find mower_simu)/model/sonar.xacro" /> 
+    <xacro:include filename="$(find mower_simu)/model/camera.xacro" /> 
+    <xacro:include filename="$(find mower_simu)/model/edge.xacro" /> 
+</robot>

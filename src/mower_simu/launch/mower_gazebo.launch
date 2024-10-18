@@ -1,0 +1,27 @@
+<launch>
+
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+
+    <node name="mower_dock_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-sdf -file /usr/share/gazebo-9/models/mower_dock/model.sdf -model mower_dock -x 0.0 -y 3.5 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
+
+    <node name="mower_grass_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-sdf -file /usr/share/gazebo-9/models/mower_grass/model.sdf -model mower_grass -x 0.0 -y 0.0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
+ 
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-x 0.0 -y 0.0 -z 0.0 -R 0.0 -P 0.0 -Y 4.0 -urdf -model microbot -param robot_description"/> 
+
+</launch>

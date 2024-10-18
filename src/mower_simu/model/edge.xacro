@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot name="microbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="EDGE_POS_X" value="0.25"/>
+    <xacro:property name="EDGE_POS_Y" value="0.0"/>
+    <xacro:property name="EDGE_LENGTH" value="0.02"/>  
+    <xacro:property name="EDGE_WIDTH" value="0.02"/>
+    <xacro:property name="EDGE_HEIGHT" value="0.02"/>
+    <xacro:property name="MATH_PI" value="3.1415926"/>
+
+    <joint name="edge_base_joint_front" type="fixed">
+        <origin xyz="${EDGE_POS_X} ${EDGE_POS_Y} ${BASE_LINK_HEIGHT/2 - EDGE_HEIGHT/2}" rpy="0 0 0"/> 
+        <parent link="base_link"/>
+        <child link="edge_link_front"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="edge_base_joint_rear" type="fixed">
+        <origin xyz="${-EDGE_POS_X} ${EDGE_POS_Y} ${BASE_LINK_HEIGHT/2 - EDGE_HEIGHT/2}" rpy="0 0 ${MATH_PI}"/> 
+        <parent link="base_link"/>
+        <child link="edge_link_rear"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="edge_link_front">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${EDGE_LENGTH} ${EDGE_WIDTH} ${EDGE_HEIGHT}"/> 
+            </geometry>
+            <material name="Green"/>
+        </visual>
+    </link>
+    <link name="edge_link_rear">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${EDGE_LENGTH} ${EDGE_WIDTH} ${EDGE_HEIGHT}"/> 
+            </geometry>
+            <material name="Green"/>
+        </visual>
+    </link>
+
+
+    <gazebo reference="edge_link1">
+        <material>Gazebo/Green</material>
+    </gazebo>  
+    <gazebo reference="edge_link2">
+        <material>Gazebo/Green</material>
+    </gazebo>  
+
+
+</robot>

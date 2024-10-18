@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="microbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="GPS_MASS" value="0.01"/>
+    <xacro:property name="GPS_POS_X" value="0.2"/>
+    <xacro:property name="GPS_LENGTH" value="0.03"/>  
+    <xacro:property name="GPS_WIDTH" value="0.05"/>
+    <xacro:property name="GPS_HEIGHT" value="0.008"/>
+
+    <joint name="gps_base_joint" type="fixed">
+        <origin xyz="${-GPS_POS_X} 0 ${BASE_LINK_HEIGHT/2+GPS_HEIGHT/2}" rpy="0 0 0"/> 
+        <parent link="base_link"/>
+        <child link="gps_link"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="gps_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${GPS_LENGTH} ${GPS_WIDTH} ${GPS_HEIGHT}"/> 
+            </geometry>
+            <material name="Red"/>
+        </visual>
+    </link>
+    <gazebo reference="gps_link">
+        <material>Gazebo/Black</material>
+    </gazebo>  
+
+
+    <gazebo>
+        <plugin name="gps" filename="libhector_gazebo_ros_gps.so">  
+            <updateRate>10.0</updateRate>  
+            <topicName>sensor_msgs/NavSatFix</topicName>  
+            <gaussianNoise>0.02 0.02 0.02</gaussianNoise>  
+            <velocityGaussianNoise>0 0 0</velocityGaussianNoise>  
+            <frameId>base_link</frameId>  
+            <referenceLatitude>40.14624865</referenceLatitude>
+            <referenceLongitude>116.41126261</referenceLongitude>
+            <referenceAltitude>30.0</referenceAltitude>
+            <referenceHeading>90</referenceHeading>
+        </plugin>  
+    </gazebo>
+</robot>    
+

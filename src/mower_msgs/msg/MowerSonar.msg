@@ -1,0 +1,6 @@
+float32 sonar_front_left
+float32 sonar_front_center
+float32 sonar_front_right
+float32 sonar_rear_left
+float32 sonar_rear_center
+float32 sonar_rear_right

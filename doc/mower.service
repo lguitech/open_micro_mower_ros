@@ -1,0 +1,13 @@
+[Unit]
+Description=Start Mower
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/start_mower.sh
+Restart=always
+User=teamhd
+Group=teamhd
+
+[Install]
+WantedBy=multi-user.target

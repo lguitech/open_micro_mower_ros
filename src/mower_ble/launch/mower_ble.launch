@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="output"          default="screen"/> 
+    <arg name="required"        default="true"/>
+    <arg name="respawn"         default="false"/>
+
+
+    <node pkg="mower_ble" type="mower_ble_node" name="mower_ble" 
+          output="$(arg output)" required="$(arg required)" respawn="$(arg respawn)">
+
+        <param name="devname"           			value="/dev/mower_ble"/>
+        <param name="baudrate"          			value="115200"/>
+        <param name="filespec"          			value="/var/tmp/map_raw.dat"/>
+
+        <param name="mower_gnss_topic"              value="/mower/gnss"/>
+        <param name="mower_chassis_state_topic"     value="/mower/chassis_state"/>
+        <param name="mower_chassis_control_topic"   value="/mower/chassis_control"/>
+        <param name="mower_work_state_topic"        value="/mower/work_state"/>
+        <param name="mower_work_control_topic"      value="/mower/work_control"/>
+        <param name="mower_map_update_topic"        value="/mower/map_update"/>
+
+    </node>
+</launch>
+

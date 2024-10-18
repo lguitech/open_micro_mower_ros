@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="microbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="IMU_MASS" value="0.01"/>
+    <xacro:property name="IMU_POS_X" value="0.2"/>
+    <xacro:property name="IMU_LENGTH" value="0.02"/>  
+    <xacro:property name="IMU_WIDTH" value="0.02"/>
+    <xacro:property name="IMU_HEIGHT" value="0.04"/>
+
+    <joint name="imu_base_joint" type="fixed">
+        <origin xyz="${-IMU_POS_X} 0 ${BASE_LINK_HEIGHT/2+IMU_HEIGHT/2}" rpy="0 0 0"/> 
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="imu_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${IMU_LENGTH} ${IMU_WIDTH} ${IMU_HEIGHT}"/> 
+            </geometry>
+            <material name="Red"/>
+        </visual>
+    </link>
+    <gazebo reference="imu_link">
+        <material>Gazebo/Green</material>
+    </gazebo>  
+
+    <gazebo>
+        <plugin name="imu" filename="libhector_gazebo_ros_imu.so">
+            <updateRate>10.0</updateRate>  
+            <frameId>base_link</frameId>
+            <topicName>sensor_msgs/Imu</topicName>
+            <biasTopicName>imu/bias</biasTopicName>
+            <gaussianNoise>0.1 0.1 0.1</gaussianNoise> 
+            <xyzOffset >0.0 0.0 0.0</xyzOffset> 
+            <rpyOffset >0.0 0.0 0.0</rpyOffset>             
+            <bodyName>imu_link</bodyName>
+        </plugin>
+    </gazebo>
+</robot>    
+

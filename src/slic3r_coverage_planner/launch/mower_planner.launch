@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="output"                          default="screen"/> 
+    <arg name="required"                        default="true"/>
+    <arg name="respawn"                         default="false"/>
+    <arg name="visualize_plan"                  default="true"/>
+    
+
+    <node pkg="slic3r_coverage_planner" type="slic3r_coverage_planner" name="mower_planner" 
+          output="$(arg output)" required="$(arg required)" respawn="$(arg respawn)">
+        <param name="visualize_plan"    value="$(arg visualize_plan)"/>  
+    </node>
+</launch>
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="output"                          default="screen"/> 
+    <arg name="required"                        default="true"/>
+    <arg name="respawn"                         default="false"/>
+
+    <node pkg="mower_map" type="mower_map_node" name="mower_map" 
+          output="$(arg output)" required="$(arg required)" respawn="$(arg respawn)">
+        
+        <param name="filespec"                      value="/var/tmp/map_raw.dat"/>
+        <param name="mower_odom_topic"              value="/mower/odom"/>    
+        <param name="mower_map_update_topic"        value="/mower/map_update"/>  
+        <param name="mower_global_map_topic"        value="/mower/map"/>  
+        <param name="mower_local_map_topic"         value="/mower/localmap"/>  
+        <param name="mower_map_meta_topic"          value="/mower/map_meta"/>  
+        <param name="mower_work_path_topic"         value="/mower/work_path"/>  
+        <param name="mower_work_channel_topic"      value="/mower/channel"/>  
+
+        <param name="mower_obstacle_topic"          value="/mower/obstacle"/> 
+        <param name="mower_home_topic"              value="/mower/home"/> 
+        
+        <param name="mower_chassis_state_topic"     value="/mower/chassis_state"/>
+        <param name="mower_cluster_marker_topic"    value="/mower/cluster_marker"/>
+        <param name="mower_cluster_obstacle_topic"  value="/mower/cluster_obstacle"/>
+
+    </node>
+</launch>

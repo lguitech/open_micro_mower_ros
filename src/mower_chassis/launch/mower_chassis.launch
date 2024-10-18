@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="output"                          default="screen"/> 
+    <arg name="required"                        default="true"/>
+    <arg name="respawn"                         default="false"/>
+
+    <node pkg="mower_chassis" type="mower_chassis_node" name="mower_chassis" 
+          output="$(arg output)" required="$(arg required)" respawn="$(arg respawn)">
+
+        <param name="devname"                       value="/dev/mower_chassis"/> 
+        <param name="baudrate"                      value="115200"/>
+
+        <param name="mower_chassis_state_topic"     value="/mower/chassis_state"/>
+        <param name="mower_chassis_control_topic"   value="/mower/chassis_control"/>
+        
+        <param name="sonar_front_left_topic"        value="/sensor_msgs/SonarFrontLeft"/>
+        <param name="sonar_front_center_topic"      value="/sensor_msgs/SonarFrontCenter"/>
+        <param name="sonar_front_right_topic"       value="/sensor_msgs/SonarFrontRight"/>
+        <param name="sonar_rear_left_topic"         value="/sensor_msgs/SonarRearLeft"/>
+        <param name="sonar_rear_center_topic"       value="/sensor_msgs/SonarRearCenter"/>
+        <param name="sonar_rear_right_topic"        value="/sensor_msgs/SonarRearRight"/>
+
+
+        <param name="joint_states_topic"            value="joint_states"/>
+
+    </node>
+</launch>
+

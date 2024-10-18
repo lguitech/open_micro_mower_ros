@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="output"                      default="screen"/> 
+    <arg name="required"                    default="true"/>
+    <arg name="respawn"                     default="false"/>
+
+    <node pkg="mower_biz" type="mower_biz_node" name="mower_biz" 
+          output="$(arg output)" required="$(arg required)" respawn="$(arg respawn)">
+        
+        <param name="mower_gnss_topic"                          value="/mower/gnss"/>  
+        <param name="mower_odom_topic"                          value="/mower/odom"/>  
+        <param name="mower_map_topic"                           value="/mower/map"/>  
+        <param name="mower_map_meta_topic"                      value="/mower/map_meta"/>  
+        <param name="mower_obstacle_topic"                      value="/mower/obstacle"/>  
+
+        <param name="mower_work_state_topic"                    value="/mower/work_state"/>  
+        <param name="mower_work_control_topic"                  value="/mower/work_control"/>  
+        <param name="route_service"                             value="/mower_service/route"/>  
+        
+        <param name="mower_free_path_topic"                     value="/mower/free_path"/>  
+        <param name="mower_work_path_topic"                     value="/mower/work_path"/>  
+        <param name="mower_region_path_topic"                   value="/mower/region_path"/>  
+        <param name="mower_chassis_control_topic"               value="/mower/chassis_control"/>  
+
+        <param name="mower_teb_static_obstacle_topic"     		value="/mower/teb_static_obstacle"/>  
+        
+        <param name="mower_cluster_obstacle_topic"              value="/mower/cluster_obstacle"/>
+
+		<param name="mower_home_update_topic"  					value="/mower/home_update"/>
+    </node>
+</launch>
+
+
+

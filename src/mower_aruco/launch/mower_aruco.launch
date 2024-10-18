@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="output" 		default="screen"/> 
+    <arg name="required" 	default="true"/>
+    <arg name="respawn" 	default="false"/>
+
+
+    <node pkg="mower_aruco" type="mower_aruco_node" name="mower_aruco" 
+          output="$(arg output)" required="$(arg required)" respawn="$(arg respawn)">
+        
+        <param name="camera_image_topic" 		value="/camera/image_raw"/>
+		<param name="mower_aruco_detect_topic" 	value="/mower/aruco_detect"/>
+		<param name="mower_aruco_control_topic" value="/mower/aruco_control"/>
+		
+    </node>
+</launch>

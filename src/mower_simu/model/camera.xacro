@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot name="microbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="CAM_MASS" value="0.01"/>
+    <xacro:property name="CAM_POS_X" value="0.25"/>
+    <xacro:property name="CAM_LENGTH" value="0.02"/>  
+    <xacro:property name="CAM_WIDTH" value="0.02"/>
+    <xacro:property name="CAM_HEIGHT" value="0.04"/>
+
+    <joint name="cam_base_joint" type="fixed">
+        <origin xyz="${CAM_POS_X} 0 ${BASE_LINK_HEIGHT/2-CAM_HEIGHT/2}" rpy="0 0 0"/> 
+        <parent link="base_link"/>
+        <child link="cam_link"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="cam_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${CAM_LENGTH} ${CAM_WIDTH} ${CAM_HEIGHT}"/> 
+            </geometry>
+            <material name="Gray"/>
+        </visual>
+    </link>
+    <gazebo reference="cam_link">
+        <material>Gazebo/Gray</material>
+    </gazebo>  
+
+    <gazebo reference="cam_link">
+    <sensor type="camera" name="camera1">
+        <update_rate>50.0</update_rate>
+        <camera name="head">
+            <horizontal_fov>1.3962634</horizontal_fov>
+            <image>
+                <width>640</width>
+                <height>480</height>
+                <format>R8G8B8</format>
+            </image>
+            <clip>
+                <near>0.02</near>
+                <far>300</far>
+            </clip>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.007</stddev>
+            </noise>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+			<horizontalFOV>1.0472</horizontalFOV> 
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+        </plugin>
+    </sensor>
+    </gazebo>
+
+</robot>    
+

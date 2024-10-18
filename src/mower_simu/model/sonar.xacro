@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<robot name="microbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="SONAR_MASS" value="0.01"/>
+    <xacro:property name="SONAR_POS_X_FRONT" value="0.17"/>
+    <xacro:property name="SONAR_POS_X_REAR" value="0.30"/>
+    <xacro:property name="SONAR_POS_Y" value="0.06"/>
+    <xacro:property name="SONAR_ANGLE" value="0.78539815"/> 
+    <xacro:property name="SONAR_PITCH_ANGLE" value="0.26"/>
+    <xacro:property name="SONAR_SENSOR_ANGLE" value="0.26"/>
+    <xacro:property name="FOV" value="0.52"/>
+    <xacro:property name="MATH_PI" value="3.1415926"/>
+
+    <xacro:property name="MIN_DISTANCE" value="0.02"/>
+    <xacro:property name="MAX_DISTANCE" value="4.0"/>
+    <xacro:property name="RESOLUTION" value="0.01"/>
+    
+
+    <xacro:property name="SONAR_LENGTH" value="0.02"/>  
+    <xacro:property name="SONAR_WIDTH" value="0.02"/>
+    <xacro:property name="SONAR_HEIGHT" value="0.1"/>
+
+    <xacro:property name="NOISE" value="0.0"/>
+
+    <joint name="sonar_base_joint_front_left" type="fixed">
+        <origin xyz="${SONAR_POS_X_FRONT} ${SONAR_POS_Y} ${BASE_LINK_HEIGHT/2+SONAR_HEIGHT/2}" rpy="0 ${-SONAR_PITCH_ANGLE} ${SONAR_ANGLE}"/> 
+        <parent link="base_link"/>
+        <child link="sonar_link_front_left"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="sonar_base_joint_front_center" type="fixed">
+        <origin xyz="${SONAR_POS_X_FRONT} 0 ${BASE_LINK_HEIGHT/2+SONAR_HEIGHT/2}" rpy="0 ${-SONAR_PITCH_ANGLE} 0"/> 
+        <parent link="base_link"/>
+        <child link="sonar_link_front_center"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="sonar_base_joint_front_right" type="fixed">
+        <origin xyz="${SONAR_POS_X_FRONT} ${-SONAR_POS_Y} ${BASE_LINK_HEIGHT/2+SONAR_HEIGHT/2}" rpy="0 ${-SONAR_PITCH_ANGLE} ${-SONAR_ANGLE}"/> 
+        <parent link="base_link"/>
+        <child link="sonar_link_front_right"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="sonar_base_rear_left" type="fixed">
+        <origin xyz="${-SONAR_POS_X_REAR} ${-SONAR_POS_Y} ${BASE_LINK_HEIGHT/2+SONAR_HEIGHT/2}" rpy="0 ${-SONAR_PITCH_ANGLE} ${MATH_PI+SONAR_ANGLE}"/> 
+        <parent link="base_link"/>
+        <child link="sonar_link_rear_left"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="sonar_base_rear_center" type="fixed">
+        <origin xyz="${-SONAR_POS_X_REAR} 0 ${BASE_LINK_HEIGHT/2+SONAR_HEIGHT/2}" rpy="0 ${-SONAR_PITCH_ANGLE} ${MATH_PI}"/> 
+        <parent link="base_link"/>
+        <child link="sonar_link_rear_center"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+
+    <joint name="sonar_base_rear_right" type="fixed">
+        <origin xyz="${-SONAR_POS_X_REAR} ${SONAR_POS_Y} ${BASE_LINK_HEIGHT/2+SONAR_HEIGHT/2}" rpy="0 ${-SONAR_PITCH_ANGLE} ${MATH_PI-SONAR_ANGLE}"/> 
+        <parent link="base_link"/>
+        <child link="sonar_link_rear_right"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="sonar_link_front_left">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${SONAR_LENGTH} ${SONAR_WIDTH} ${SONAR_HEIGHT}"/> 
+            </geometry>
+            <material name="Blue"/>
+        </visual>
+    </link>
+    <link name="sonar_link_front_center">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${SONAR_LENGTH} ${SONAR_WIDTH} ${SONAR_HEIGHT}"/> 
+            </geometry>
+            <material name="Blue"/>
+        </visual>
+    </link>
+    <link name="sonar_link_front_right">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${SONAR_LENGTH} ${SONAR_WIDTH} ${SONAR_HEIGHT}"/> 
+            </geometry>
+            <material name="Blue"/>
+        </visual>
+    </link>
+
+
+   <link name="sonar_link_rear_left">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${SONAR_LENGTH} ${SONAR_WIDTH} ${SONAR_HEIGHT}"/> 
+            </geometry>
+            <material name="Blue"/>
+        </visual>
+    </link>
+    <link name="sonar_link_rear_center">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${SONAR_LENGTH} ${SONAR_WIDTH} ${SONAR_HEIGHT}"/> 
+            </geometry>
+            <material name="Blue"/>
+        </visual>
+    </link>
+    <link name="sonar_link_rear_right">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${SONAR_LENGTH} ${SONAR_WIDTH} ${SONAR_HEIGHT}"/> 
+            </geometry>
+            <material name="Blue"/>
+        </visual>
+    </link>
+
+
+    <gazebo reference="sonar_link_front_left">
+        <material>Gazebo/Blue</material>
+    </gazebo>  
+    <gazebo reference="sonar_link_front_center">
+        <material>Gazebo/Blue</material>
+    </gazebo>  
+    <gazebo reference="sonar_link_front_right">
+        <material>Gazebo/Blue</material>
+    </gazebo>  
+
+    <gazebo reference="sonar_link_rear_left">
+        <material>Gazebo/Blue</material>
+    </gazebo>  
+    <gazebo reference="sonar_link_rear_center">
+        <material>Gazebo/Blue</material>
+    </gazebo>  
+    <gazebo reference="sonar_link_rear_right">
+        <material>Gazebo/Blue</material>
+    </gazebo>  
+   
+    <gazebo reference="sonar_link_front_left">
+        <sensor type="ray" name="sonar_link_front_left">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+            <horizontal>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </horizontal>
+            <vertical>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </vertical>
+            </scan>
+            <range>
+                <min>${MIN_DISTANCE}</min>
+                <max>${MAX_DISTANCE}</max>
+                <resolution>${RESOLUTION}</resolution>
+            </range>
+        </ray>
+        <plugin name="ultrasonic_sensor_controller" filename="libgazebo_ros_range.so">
+            <gaussianNoise>${NOISE}</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10</updateRate>
+            <topicName>sensor_msgs/SonarFrontLeft</topicName>
+            <frameName>ultrasonic_sensor</frameName>
+            <fov>${FOV}</fov>
+            <radiation>ultrasound</radiation>
+            <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+            <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+        </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="sonar_link_front_center">
+        <sensor type="ray" name="sonar_link_front_center">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+            <horizontal>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </horizontal>
+            <vertical>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </vertical>
+            </scan>
+            <range>
+                <min>${MIN_DISTANCE}</min>
+                <max>${MAX_DISTANCE}</max>
+                <resolution>${RESOLUTION}</resolution>
+            </range>
+        </ray>
+        <plugin name="ultrasonic_sensor_controller" filename="libgazebo_ros_range.so">
+            <gaussianNoise>${NOISE}</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10</updateRate>
+            <topicName>sensor_msgs/SonarFrontCenter</topicName>
+            <frameName>ultrasonic_sensor</frameName>
+            <fov>${FOV}</fov>
+            <radiation>ultrasound</radiation>
+            <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle> 
+            <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+        </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="sonar_link_front_right">
+        <sensor type="ray" name="sonar_link_front_right">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+            <horizontal>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </horizontal>
+            <vertical>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </vertical>
+            </scan>
+            <range>
+                <min>${MIN_DISTANCE}</min>
+                <max>${MAX_DISTANCE}</max>
+                <resolution>${RESOLUTION}</resolution>
+            </range>
+        </ray>
+        <plugin name="ultrasonic_sensor_controller" filename="libgazebo_ros_range.so">
+            <gaussianNoise>${NOISE}</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10</updateRate>
+            <topicName>sensor_msgs/SonarFrontRight</topicName>
+            <frameName>ultrasonic_sensor</frameName>
+            <fov>${FOV}</fov>
+            <radiation>ultrasound</radiation>
+            <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle> 
+            <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+        </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="sonar_link_rear_left">
+        <sensor type="ray" name="sonar_link_rear_left">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+            <horizontal>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </horizontal>
+            <vertical>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle> 
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </vertical>
+            </scan>
+            <range>
+                <min>${MIN_DISTANCE}</min>
+                <max>${MAX_DISTANCE}</max>
+                <resolution>${RESOLUTION}</resolution>
+            </range>
+        </ray>
+        <plugin name="ultrasonic_sensor_controller" filename="libgazebo_ros_range.so">
+            <gaussianNoise>${NOISE}</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10</updateRate>
+            <topicName>sensor_msgs/SonarRearLeft</topicName>
+            <frameName>ultrasonic_sensor</frameName>
+            <fov>${FOV}</fov>
+            <radiation>ultrasound</radiation>
+            <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+            <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+        </plugin>
+        </sensor>
+    </gazebo>
+
+
+    <gazebo reference="sonar_link_rear_center">
+        <sensor type="ray" name="sonar_link_rear_center">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+            <horizontal>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle> 
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </horizontal>
+            <vertical>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </vertical>
+            </scan>
+            <range>
+                <min>${MIN_DISTANCE}</min>
+                <max>${MAX_DISTANCE}</max>
+                <resolution>${RESOLUTION}</resolution>
+            </range>
+        </ray>
+        <plugin name="ultrasonic_sensor_controller" filename="libgazebo_ros_range.so">
+            <gaussianNoise>${NOISE}</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10</updateRate>
+            <topicName>sensor_msgs/SonarRearCenter</topicName>
+            <frameName>ultrasonic_sensor</frameName>
+            <fov>${FOV}</fov>
+            <radiation>ultrasound</radiation>
+            <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+            <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+        </plugin>
+        </sensor>
+    </gazebo>    
+
+
+    <gazebo reference="sonar_link_rear_right">
+        <sensor type="ray" name="sonar_link_rear_right">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+            <horizontal>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle> 
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </horizontal>
+            <vertical>
+                <samples>10</samples>
+                <resolution>1</resolution>
+                <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle> 
+                <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+            </vertical>
+            </scan>
+            <range>
+                <min>${MIN_DISTANCE}</min>
+                <max>${MAX_DISTANCE}</max>
+                <resolution>${RESOLUTION}</resolution>
+            </range>
+        </ray>
+        <plugin name="ultrasonic_sensor_controller" filename="libgazebo_ros_range.so">
+            <gaussianNoise>${NOISE}</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10</updateRate>
+            <topicName>sensor_msgs/SonarRearRight</topicName>
+            <frameName>ultrasonic_sensor</frameName>
+            <fov>${FOV}</fov>
+            <radiation>ultrasound</radiation>
+            <min_angle>${-SONAR_SENSOR_ANGLE}</min_angle>
+            <max_angle>${SONAR_SENSOR_ANGLE}</max_angle>
+        </plugin>
+        </sensor>
+    </gazebo>       
+</robot>
